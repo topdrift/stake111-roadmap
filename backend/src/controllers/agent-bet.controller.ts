@@ -31,7 +31,7 @@ export const placeAgentBet = async (req: Request, res: Response) => {
     }
 
     // Check agent balance
-    const agent = await prisma.agent.findFirst({ where: { userId: agentId } });
+    const agent = await prisma.agent.findUnique({ where: { id: agentId } });
     if (!agent) {
       return res.status(404).json({ success: false, message: 'Agent not found' });
     }
@@ -106,7 +106,7 @@ export const placeAgentFancyBet = async (req: Request, res: Response) => {
     }
 
     // Check agent balance
-    const agent = await prisma.agent.findFirst({ where: { userId: agentId } });
+    const agent = await prisma.agent.findUnique({ where: { id: agentId } });
     if (!agent) {
       return res.status(404).json({ success: false, message: 'Agent not found' });
     }
